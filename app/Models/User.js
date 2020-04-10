@@ -47,9 +47,7 @@ class User extends Model {
    *
    * @method tweets
    *
-   * @return {Object}
    */
-
   tweets() {
     return this.hasMany('App/Models/Tweet');
   }

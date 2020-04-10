@@ -41,6 +41,42 @@ class User extends Model {
   tokens() {
     return this.hasMany('App/Models/Token');
   }
+
+  /**
+   * Relationship on Tweet
+   *
+   * @method tweets
+   *
+   * @return {Object}
+   */
+
+  tweets() {
+    return this.hasMany('App/Models/Tweet');
+  }
+
+  followers() {
+    return this.belongsToMany(
+      'App/Models/User',
+      'user_id',
+      'follower_id'
+    ).pivotTable('followers');
+  }
+
+  following() {
+    return this.belongsToMany(
+      'App/Models/User',
+      'follower_id',
+      'user_id'
+    ).pivotTable('followers');
+  }
+
+  favorites() {
+    return this.hasMany('App/Models/Favorite');
+  }
+
+  replies() {
+    return this.hasMany('App/Models/Reply');
+  }
 }
 
 module.exports = User;
